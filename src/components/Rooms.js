@@ -12,7 +12,8 @@ import carousel2 from '../images/carouselimg2.webp';
 import carousel3 from '../images/carouselimg3.webp';
 
 import Carousel from 'react-bootstrap/Carousel';
-import { useNavigate, useParams,Link } from 'react-router-dom';
+import { useNavigate , useParams , Link } from 'react-router-dom';
+import './room.css';
 
 import Footer from './Footer.js';
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
@@ -28,7 +29,7 @@ function Rooms(){
     const mm4 = next.filter((ds)=> ds.id == params.id)
     console.log(mm4)
 
-    const [pricedata , setPricedata] = useState(productData6)
+    const [pricedata , setPricedata] = useState (productData6)
     const [data,setdata]=useState(productData)
     const[dd1,setdd]= useState(productData1);
     const[faci,setfaci]= useState(facilities);
@@ -122,6 +123,23 @@ function Rooms(){
       else{
       }
      }
+
+     const showbox=()=>{
+      const box = document.querySelector('.hideing');
+      const classss = document.querySelector('.nonflex');
+      box.style.setProperty('display', 'block', 'important');
+      classss.classList.remove('container')
+      classss.classList.add('container-fluid');
+    }
+  
+    const closebox =()=>{
+      const box = document.querySelector('.hideing');
+      box.style.setProperty('display', 'none', 'important');
+      const classss = document.querySelector('.nonflex');
+  
+      classss.classList.add('container')
+      classss.classList.remove('container-fluid');
+    }
     return(
 
       
@@ -165,7 +183,7 @@ function Rooms(){
     
     </Carousel>
         </div>
-        <div className="container" style={{ height:"auto", display:"flex"}} >
+        <div className="container nonflex" style={{ height:"auto", display:"flex"}} >
             <div style={{width:"70%",height:"100%",backgroundColor:"white"}}>
                 <div className='mt-5 p-4' style={{padding:""}}>                <h1>Traditional Huts</h1>
                 <hr style={{width:"100%"}}></hr>
@@ -220,8 +238,10 @@ function Rooms(){
 
             </div>
 
-            <div className='bg-white ' style={{ width:"400px"}}>
+            <div className='bg-white hideing' style={{ width:"400px"}}>
         <div className=' my-5'style={{ height:"470px",backgroundColor:"#66cccc"}}>
+        <i class="fa-solid fa-xmark" onClick={closebox} style={{float:'right' , display:'none',cursor:'pointer'}}></i>
+
 
         {/* {mm2.map((rm, rmid) => (
   <div key={rmid}>
@@ -298,6 +318,24 @@ function Rooms(){
         )
       })}
         <Footer></Footer>
+
+        <div className="whitebox w-100 bg-white d-none" style={{height:'80px',justifyContent:'space-between',alignItems:'center',zIndex:20 , position:"fixed" , bottom:'0%'}}>
+            <div className="pricesss">
+              {
+                mm1.map((ele)=>{
+                  return(
+                    <>
+                      <p style={{fontSize:'25px'}} className="mx-5"><span style={{fontSize:'19px'}}>from ₹, </span>{ele.price}</p>
+                    </>
+                  )
+                })
+              }
+            </div>
+
+            <div className="booking">
+                <button className="btn btn-primary mx-5" style={{width:'200px'}} onClick={showbox}>Book Now</button>
+            </div>
+        </div>
         </>
     )
 

@@ -42,7 +42,7 @@ function AccordionItem({ title }) {
       <div >
       
         
-        <div className="accordion-content" >
+        <div className="accordion-content">
         {isOpen && (
             <>
           <p >Located amidst serene natural displays, our Atstay resort 1001, is a beautiful blend of unadulterated nature and hospitality. Undoubtedly one of the top weekend resorts near Kolkata is a pristine retreat that will indeed bless your souls with rejuvenation and unforgettable memories. The presence of tranquil waters in the pool and adrenaline-pumping activities will provide a much-needed escape from mundane city life. Plan your dream weekend with us @atraskitravel</p>
@@ -74,6 +74,25 @@ function Atstaynextpage() {
   const [numss,setnumss] = useState(() => (localStorage.getItem('child'))|| 0);
   const [nums,setnums] = useState(() => (localStorage.getItem('adult'))|| 0);
   const [num,setnum] = useState(() => (localStorage.getItem('room'))|| 0);
+  const [numberOfDays, setNumberOfDays] = useState(0);
+
+
+  useEffect(() => {
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+
+    if (!isNaN(checkinDate) && !isNaN(checkoutDate)) {
+      const timeDifference = checkoutDate - checkinDate;
+      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+      setNumberOfDays(daysDifference);
+
+      // Store the number of days in localStorage
+      localStorage.setItem('numberOfDays', daysDifference.toString());
+    }
+  }, [checkin, checkout]);
+
+  const numberofdays = localStorage.getItem('numberOfDays');
 
 
 
@@ -99,6 +118,7 @@ function Atstaynextpage() {
     localStorage.setItem('child', numss);
     localStorage.setItem('adult', nums);
     localStorage.setItem('room', num);
+    
   }, [data, dd1, faci, checkout, checkin, numss, nums, num]);
 
 
@@ -181,12 +201,44 @@ const dec2 = () => {
     setWordData(wordSlider);
   };
 
+  const showbox=()=>{
+    const box = document.querySelector('.hideing');
+    const classss = document.querySelector('.nonflex');
+    box.style.setProperty('display', 'block', 'important');
+    classss.classList.remove('container')
+    classss.classList.add('container-fluid');
+  }
+
+  const closebox =()=>{
+    const box = document.querySelector('.hideing');
+    box.style.setProperty('display', 'none', 'important');
+    const classss = document.querySelector('.nonflex');
+
+    classss.classList.add('container')
+    classss.classList.remove('container-fluid');
+  }
+
+  const showprice=()=>{
+    const scrollY = 1200; // Adjust this value as needed
+
+    // Scroll to the specified Y-coordinate
+    window.scrollTo({
+      top: scrollY,
+      behavior: 'smooth', // You can use 'auto' for an instant scroll
+    });
+
+    // const price = document.querySelector('.nightprice')
+    // price.style.setProperty('display','block','important')
+  }
+
+
+
   return (
     <>
       <Navbar />
       {mm1.map((ele)=>{
         return(
-      <div className='container' style={{ display: " flex"}}>
+      <div className='container nonflex' style={{ display: " flex" , margin:'0px auto'}}>
       <div className="container" style={{height:'auto',}}>
         <h1>{ele.trip}</h1>
         <div id="carouselExampleFade" class="carousel slide carousel-fade  carouselimgage" >
@@ -281,15 +333,15 @@ return(
                 {eles.room1.map((room , i) => (
 
 
-                <div style={{display:"flex" , border:"0.1px solid #d0dbdb" , justifyContent:"space-between",padding:"0", margin:"0"}}>
-                  <div>
+                <div className="direct" style={{display:"flex" , border:"0.1px solid #d0dbdb" , justifyContent:"space-between",padding:"0", margin:"0"}}>
+                  <div className="fixsize">
                    <Link to={`/rooms/${room.id}`}> <img src={room.imgs} style={{ height:"200px" ,padding:"0", margin:"0"}}></img></Link>
                   </div>
                   <div  className ="mt-2 "style={{ display:"flex", flexDirection:"column",justifyContent:"center",alignItems:"center"}}> <h5 className='ms-2'> {room.roomtype}</h5>
                   <div style={{display:"flex"}}> 
                   <i class="fa-solid fa-bed  fs-4 mt-2 mx-3"></i>        <i class="fa-solid fa-people-arrows fs-4 mt-2 mx-3"></i>
                   <i class="fa-solid fa-child fs-4 mt-2 mx-3"></i>    
-                  <span>{room.price}</span>        
+                          
       
       
       
@@ -297,7 +349,9 @@ return(
       
       
                   </div>
-                  <div style={{ display:"flex", justifyContent:'center',alignItems:"center"}}><button className='btn btn-large btn-danger mt-4 me-3' >Show more</button></div>
+                  
+                   <div style={{ display:"flex", justifyContent:'center',alignItems:"center", flexDirection:'column'}}><Link to={`/rooms/${room.id}`}><button className='btn btn-large btn-danger mt-4 me-3' >Show more</button></Link></div>
+                  {/* <span className="nightprice" style={{fontSize:'15px' , fontFamily:'cursive',fontWeight:'800' , display:'none' }}>{room.price[i] * numberofdays}/ {numberofdays} night</span> */}
       
                 </div>
                     ))}
@@ -310,9 +364,9 @@ return(
         })}
         
       </div>
-      <div className='bg-white ' style={{ width:"400px"}}>
+      <div className='bg-white hideing' style={{ width:"400px"}}>
         <div className=' my-5'style={{ height:"470px",backgroundColor:"#66cccc"}}>
-
+        <i class="fa-solid fa-xmark" onClick={closebox} style={{float:'right' , display:'none',cursor:'pointer'}}></i>
         <div style={{ backgroundColor:"#66cccc" ,height:"70px" ,display:"flex",justifyContent:"center",alignItems:'center',border:"0.1px solid #66cccc"}} > <h5>from ₹ {ele.price}/night</h5></div>
 
         <div style={{  backgroundColor:"#fff" ,height:"70px" ,display:"flex",justifyContent:"center",alignItems:'center',border:"0.1px solid #66cccc"}} ><h4>Book</h4>
@@ -337,7 +391,7 @@ return(
 
             </div>
 <div style={{ backgroundColor:"white", height:"100px",display:"flex",justifyContent:"center",alignItems:'center',border:"0.1px solid #66cccc"}}> 
-<button className='' style={{ backgroundColor:"#66cccc" , textTransform:'uppercase', border:'none' , borderRadius:'25px' , padding:'5px 15px'}} onClick={navi}><h2 style={{fontSize:'20px', marginTop:'5px'}} >BOOK Now</h2></button>
+<button className='' style={{ backgroundColor:"#66cccc" , textTransform:'uppercase', border:'none' , borderRadius:'25px' , padding:'5px 15px'}} onClick={navi}><h2 style={{fontSize:'20px', marginTop:'5px'}} onClick={showprice}>Check Availability</h2></button>
 
 </div>
 
@@ -353,6 +407,24 @@ return(
 
 
       <Footer></Footer>
+
+        <div className="whitebox w-100 bg-white d-none" style={{height:'80px',justifyContent:'space-between',alignItems:'center',zIndex:20 , position:"fixed" , bottom:'0%'}}>
+            <div className="pricesss">
+              {
+                mm1.map((ele)=>{
+                  return(
+                    <>
+                      <p style={{fontSize:'25px'}} className="mx-5"><span style={{fontSize:'19px'}}>from ₹, </span>{ele.price}</p>
+                    </>
+                  )
+                })
+              }
+            </div>
+
+            <div className="booking">
+                <button className="btn btn-primary mx-5" style={{width:'200px'}} onClick={showbox}>Book Now</button>
+            </div>
+        </div>
 
 
     </>

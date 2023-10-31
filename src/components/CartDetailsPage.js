@@ -2,14 +2,17 @@ import React, {useState} from 'react';
 import Navbar from './Navbar';
 import { useParams } from 'react-router-dom';
 import { productData1 } from './Atstaynextdata';
+import { productData6 } from './Atstaynextprice';
 import Footers from './Footer';
 
 export default function CartDetailsPage() {
-    const [mm, setMM] = useState(productData1);
+    const [mm, setMM] = useState(productData6);
   const params = useParams();
   const mm1 = mm.filter((datas) => datas.id == params.id);
 
-  const adult = localStorage.getItem('adultCount')
+  const adult = localStorage.getItem('adult')
+  const child = localStorage.getItem('child')
+  const room = localStorage.getItem('room')
   const checkinn =localStorage.getItem('checkin')
   const checkoutt =localStorage.getItem('checkout')
     const diff =localStorage.getItem('numberOfDays')
@@ -31,10 +34,10 @@ export default function CartDetailsPage() {
 
                     <div className="cartDetails my-4 d-flex">
                         <div className="Images">
-                            <img src={elm.imges} style={{width:'150px' , height:'150px'}}></img>
+                            <img src={elm.imgs} style={{width:'150px' , height:'150px'}}></img>
                         </div>
                         <div className="Details mx-5">
-                            <h6 style={{textTransform:'uppercase' , color:'blue' , letterSpacing:'3px'}}>{elm.trip}</h6>
+                            <h6 style={{textTransform:'uppercase' , color:'blue' , letterSpacing:'3px'}}>{elm.roomtype}</h6>
 
                             <div className="locationtrip my-3">
                             <i className="fa-solid fa-location-dot" /> {elm.place}
@@ -52,10 +55,16 @@ export default function CartDetailsPage() {
                             <p>Checkout : {checkoutt}</p> 
                             </div>
 
-                            <div className="bookingDetails">
-                                <p>Adult : {diff} x ₹ {elm.price} = ₹ {diff * (elm.price)}</p>
+                            <div className="numberofdaysss">
+                                {diff} Days to Stay = {diff} <i class="fa-solid fa-xmark" style={{fontSize:'10px'}}></i> {(elm.price)} = {diff * (elm.price)}
+                            </div>
+
+                            <div className="bookingDetails my-3">
+                                <p>Adult : {adult} </p>
+                                <p>Children : {child}</p>
+                                <p>Number of Room : {room} = {room} <i class="fa-solid fa-xmark" style={{fontSize:'10px'}}></i> {(room)*diff * (elm.price)}</p>
                                 <div className="total">
-                                Total amount : ₹ {diff * (elm.price)}
+                                Total amount : ₹ {(room)*diff * (elm.price)}
                                 </div>
                             </div>
 
@@ -73,18 +82,18 @@ export default function CartDetailsPage() {
                     </div>
 
                     <div className="cardtotalbox p-3" style={{border:'1px solid grey'}}>
-                        <div className="box3">
+                        <div className="box3" style={{display:'flex' , flexDirection:'column' , justifyContent:'center'}}>
                             <div className="d-flex justify-content-between my-3">
                             <span>Subtotal</span>
-                            <span>₹ {diff * (elm.price)}</span>
+                            <span>₹ {(room)*diff * (elm.price)}</span>
                             </div>
 
                             <div className="d-flex justify-content-between">
                             <span>Total</span>
-                            <span>₹ {diff* (elm.price)}</span>
+                            <span>₹ {(room)*diff * (elm.price)}</span>
                             </div>
                             
-                            <center><button className="btn btn-primary my-3 w-75">Proceed to checkout</button></center>
+                            <center><button className="btn btn-primary my-3">Proceed to checkout</button></center>
                         </div>
 
                         

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import './Atstays.css';
+import './slider.css';
 import attour1 from '../images/attour1.webp';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import rooms from '../images/rooms.jpg';
+import beach from '../images/beach.jpg';
+import lake from '../images/lake.jpg';
+import camping from '../images/camping.jpg';
+import trending from '../images/trending.jpg';
+import mansion from '../images/Mansion.jpg';
+import tea from '../images/tea.jpg';
 
 import { productData } from './Atstaysdata';
 import Footers from './Footer';
@@ -34,6 +42,8 @@ export default function Atstays() {
     });
   };
 
+  const filterTour = filterTourCards();
+
   const inc = () => {
     setnum(num + 1);
   };
@@ -62,9 +72,216 @@ export default function Atstays() {
     }
   };
 
+  const btnpressprev = () => {
+    // const box = document.getElementById('box'); // Get the element by its id
+  let box = document.querySelector('.product-container');
+
+    if (box) {
+      const width = box.clientWidth;
+      box.scrollLeft -= width; // Use -= to scroll to the left
+      console.log(width);
+    } else {
+      console.error('Element with id "box" not found.');
+    }
+  }
+  
+  const btnpressnext = () => {
+    // const box = document.getElementById('box'); // Get the element by its id
+  let box = document.querySelector('.product-container');
+
+    if (box) {
+      const width = box.clientWidth;
+      box.scrollLeft += width; // Use += to scroll to the right
+      console.log(width);
+    } else {
+      console.error('Element with id "box" not found.');
+    }
+  }
+
+  const clickhere=()=>{
+    const help = document.querySelector('.hideeee');
+    help.style.setProperty('display', 'block', 'important');
+  }
+
+  const hidebox=()=>{
+    const hideboxs = document.querySelector('.hideeee');
+    hideboxs.style.setProperty('display', 'none', 'important')
+  }
+
   return (
     <div>
       <Navbar />
+
+      <div className="product-carousel">
+
+        <button className="pre-btn" onClick={btnpressprev}><p>&lt;</p></button>
+        <button className="next-btn" onClick={btnpressnext}><p>&gt;</p></button>
+
+        <div className="product-container">
+          <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={beach}
+          alt="First slide"
+          
+          
+        />
+        <p>Beach</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={lake}
+          alt="First slide"
+          
+          
+        />
+        <p>Lakes</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={trending}
+          alt="First slide"
+          
+          
+        />
+        <p>Trending</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={camping}
+          alt="First slide"
+          
+          
+        />
+        <p>Camping</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={mansion}
+          alt="First slide"
+          
+          
+        />
+        <p>Mansion</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={tea}
+          alt="First slide"
+          
+          
+        />
+        <p>Tea and Breakfast</p>
+        </div>
+        
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+
+ <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+
+
+        <div>
+        <img
+          className="d-block mycard"
+          src={rooms}
+          alt="First slide"
+          
+          
+        />
+        <p>rooms</p>
+        </div>
+        </div>
+
+      </div>
+     
+    
+
+      
+
 
       <div className="container-fluid">
         <div className="imgbg" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -100,12 +317,14 @@ export default function Atstays() {
       <div style={{ display: 'flex' }}>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4 hideeee">
               
 
-              <div  style={{ width: '65%', margin: 'auto', border: '3px solid #66cccc', borderRadius: '10px' }} className="mt-5">
-                <div className="filter_heading p-3" style={{ borderBottom: '1px solid #66cccc' }}>
+              <div  style={{ width: '65%', margin: 'auto', border: '3px solid #66cccc', borderRadius: '10px' }} className="mt-5 fil">
+                <div className="filter_heading d-flex justify-content-between p-3" style={{ borderBottom: '1px solid #66cccc' }}>
                   <h5>FILTER BY</h5>
+                <span className="btn disply"style={{border:'1px solid black' , display:'none'}} onClick={hidebox}>Close</span>
+
                 </div>
 
                 <div className="filterRange p-3">
@@ -192,8 +411,11 @@ export default function Atstays() {
               </div>
             </div>
 
-            <div className="col-md-8">
-              <div className="container-fluid d-flex flex-wrap justify-content-between">
+            <div className="col-md-8 exp">
+            <div>  <span className="btn mt-2 openn" style={{width:'10%', float:'right',border:'1px solid black' ,marginRight:'50px' , display:'none' }} onClick={clickhere}>Filter</span>            </div>
+
+<h4 className="mt-5 mx-3">{filterTour.length} tours found</h4>
+              <div className="container-fluid d-flex flex-wrap justify-content-between setup">
                 {filterTourCards().map((datas) => {
                   return (
                     <Link to={`/atstay/${datas.id}`}>

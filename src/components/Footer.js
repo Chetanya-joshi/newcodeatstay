@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
             </div>
 
             <div className="emails mx-5">
-              <form className="mx-5">
+              <form className="mx-5 redu">
               <input type="email" placeholder="Your Email" className="p-3 textarea border-0"/>
               <button type="submit" className="bg-primary text-white border-0 p-3">SUBSCRIBE</button>
               </form>

@@ -27,7 +27,7 @@ export const productData=[
     imges : img1,
     trip : "Exciting Andaman Family Trip",
     days : "5 Days & 4 Nights",
-    price:"9,500.00"
+    price: 9500.00
     },
 
     {
@@ -36,7 +36,7 @@ export const productData=[
         imges : img2,
         trip : "Shimla",
         days : "3 Days & 2 Nights",
-        price:"4,500.00"
+        price: 4500.00
     },
 
 
@@ -46,7 +46,7 @@ export const productData=[
         imges : img3,
         trip : "Srilanka",
         days : "5 Days & 4 Nights",
-        price:"67,500.00"
+        price: 67500.00
     },
 
 
@@ -56,7 +56,7 @@ export const productData=[
         imges : img4,
         trip : "Mysore",
         days : "2 Days & 1 Nights",
-        price:"3,500.00"
+        price: 3500.00
     },
 
 
@@ -66,7 +66,7 @@ export const productData=[
         imges : img5,
         trip : "Dayara Bugyal Trek",
         ays : "6 Days & 5 Nights",
-        price:"13,125.00"
+        price: 13125.00
     },
 
 
@@ -76,7 +76,7 @@ export const productData=[
         imges : img6,
         trip : "Purulia",
         days : "3 Days & 2 Nights",
-        price:"6,140.00"
+        price:6140.00
     },
 
     {
@@ -85,7 +85,7 @@ export const productData=[
         imges : img7,
         trip : "Kuari Pass Trek",
         days : "5 Days & 4 Nights",
-        price:"11,340.00"
+        price: 11340.00
     },
 
     {
@@ -94,7 +94,7 @@ export const productData=[
         imges : img8,
         trip : "Nag Tibba Trek",
         days : "4 Days & 3 Nights",
-        price:"9,030.00"
+        price: 9030.00
     } ,
 
     {
@@ -103,7 +103,7 @@ export const productData=[
         imges : img9,
         trip : "Nag Tibba Trek",
         days : "3 Days & 2 Nights",
-        price:"8,500.00"
+        price: 8500.00
     },
 
     {
@@ -112,7 +112,7 @@ export const productData=[
         imges : img10,
         trip : "SANCHI STUPA AND VIDISHA",
         days : "Days tour",
-        price:"7500.00"
+        price: 7500.00
     },
 
 
@@ -122,7 +122,7 @@ export const productData=[
         imges : img11,
         trip : "SHILLONG",
         days : "3 Days & 2 Nights",
-        price:"6,300.00"
+        price: 6300.00
     },
 
 
@@ -132,7 +132,7 @@ export const productData=[
         imges : img12,
         trip : "SHIVANASAMUDRA",
         days : "2 Days & 1 Nights",
-        price:"3,500.00"
+        price: 3500.00
     },
 
     {
@@ -141,7 +141,7 @@ export const productData=[
         imges : img13,
         trip : "SIKKIM",
         days : "13 Days & 12 Nights",
-        price:"15,000.00"
+        price: 15000.00
     },
 
 
@@ -151,7 +151,7 @@ export const productData=[
         imges : img14,
         trip : "OOTY",
         days : "7 Days & 6 Nights",
-        price:"17,000.00"
+        price: 17000.00
     },
 
 
@@ -161,7 +161,7 @@ export const productData=[
         imges : img15,
         trip : "LONAVLA",
         days : "3 Days & 2 Nights",
-        price:"17,000.00"
+        price: 17000.00
     }
 
 ]
